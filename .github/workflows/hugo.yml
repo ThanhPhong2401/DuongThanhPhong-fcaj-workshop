@@ -4,18 +4,24 @@ on:
     branches:
       - main
 jobs:
-  build:
+  build-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout source code
+        uses: actions/checkout@v4
         with:
-          submodules: false
+          submodules: false  # Bắt buộc là false
+          persist-credentials: false # Bổ sung dòng này để tránh xung đột quyền
+
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
+        uses: peaceiris/actions-hugo@v3 # Nên dùng v3 thay vì v2
         with:
           hugo-version: 'latest'
-      - name: Build
+          extended: true
+
+      - name: Build website
         run: hugo --minify
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
