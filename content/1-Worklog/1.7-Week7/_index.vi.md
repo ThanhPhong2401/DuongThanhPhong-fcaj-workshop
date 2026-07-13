@@ -1,59 +1,26 @@
 ---
 title: "Worklog Tuần 7"
-date: 2024-01-01
-weight: 1
+date: 2026-05-29
+weight: 7
 chapter: false
 pre: " <b> 1.7. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 7:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Thực hành quản lý lưu trữ, sao lưu và bảo mật dữ liệu với Amazon S3.
+* Tìm hiểu quy trình di chuyển máy ảo (VM) từ môi trường On-premise lên AWS.
+* Làm chủ kỹ thuật Import/Export máy ảo và quản lý tài nguyên trên đám mây.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| 1-2 | - Thực hành Lab 13: Thiết lập S3 bucket, triển khai hạ tầng, cấu hình Backup plan, thông báo (notifications), thử nghiệm khôi phục dữ liệu (Restore) và dọn dẹp tài nguyên. | 29/05/2026   | 30/05/2026      | <https://000013.awsstudygroup.com/2-prerequisite/2.1-creates3bucket/> |
+| 3-5 | - Thực hành Lab 14: Xuất máy ảo (VM) từ On-premise, tải lên AWS, import vào nền tảng, triển khai instance từ AMI và cấu hình S3 bucket ACL. | 31/05/2026   | 02/06/2026      | <https://000014.awsstudygroup.com/1-deploy-application-server/> |
 
 ### Kết quả đạt được tuần 7:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Thành thạo quy trình thiết lập sao lưu tự động và khôi phục dữ liệu trên S3.
+* Hiểu rõ cách thức di chuyển, import/export các máy ảo từ môi trường thực tế lên nền tảng AWS.
+* Nắm vững kỹ thuật quản lý phân quyền truy cập S3 thông qua ACL.
+* Thực hiện thành công việc triển khai instance trực tiếp từ các file máy ảo đã được di chuyển.

@@ -1,39 +1,35 @@
 ---
 title: "Self-Assessment"
-date: 2024-01-01
+date: 2026-07-10
 weight: 6
 chapter: false
 pre: " <b> 6. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
+During my internship in the **Workforce Bootcamp 2026 - First Cloud AI Journey** program at **Amazon Web Services Vietnam Co., Ltd.** from **April 17, 2026** to **July 17, 2026**, I am very happy, honored, and lucky to have the opportunity to learn and practice in a completely new field involving global network services, the engaging hands-on labs provided by AWS services, and highly constructive professional knowledge such as network infrastructure, storage services, and cloud computing security services.
 
-During my internship at **[Company/Organization Name]** from **[start date]** to **[end date]**, I had the opportunity to learn, practice, and apply the knowledge acquired in school to a real-world working environment.  
-I participated in **[briefly describe the main project or task]**, through which I improved my skills in **[list skills: programming, analysis, reporting, communication, etc.]**.  
+I have participated in the design process and deploying solutions based on AWS Serverless services such as Amazon S3, Amazon CloudFront, Amazon Cognito, AWS AppSync, AWS Lambda, Amazon DynamoDB, Amazon CloudWatch, AWS CodePipeline, AWS CodeBuild, and AWS CloudFormation. TThrough building practical projects, I have improved my skills in writing proposals, building workshops, translating and taking technical blog notes, as well as deploying reports on GitHub Pages.
 
-In terms of work ethic, I always strived to complete tasks well, complied with workplace regulations, and actively engaged with colleagues to improve work efficiency.
+To reflect the internship process objectively, I have self-assessed myself based on the following criteria:
 
-To objectively reflect on my internship period, I would like to evaluate myself based on the following criteria:
+| No. | Criteria | Description | Excellent | Good | Average |
+| :--- | :--- | :--- | :---: | :---: | :---: |
+| 1 | **Professional knowledge and skills** | Industry understanding, practical application of knowledge, tool usage skills | ☐ | ✅ | ☐ |
+| 2 | **Learning ability** | Absorption of new knowledge, quick learning | ☐ | ✅ | ☐ |
+| 3 | **Proactiveness** | Self-study, taking on tasks without waiting for instructions | ☐ | ✅ | ☐ |
+| 4 | **Sense of responsibility** | Completing work on time, ensuring quality | ☐ | ✅ | ☐ |
+| 5 | **Discipline** | Adhering to schedules, rules, and work procedures | ☐ | ✅ | ☐ |
+| 6 | **Proactive attitude** | Ready to receive feedback and improve oneself | ☐ | ✅ | ☐ |
+| 7 | **Communication** | Presenting ideas, reporting work clearly | ☐ | ✅ | ☐ |
+| 8 | **Teamwork** | Working effectively with colleagues, participating in groups | ☐ | ✅ | ☐ |
+| 9 | **Professional conduct** | Respecting colleagues, partners, and the work environment | ☐ | ✅ | ☐ |
+| 10 | **Problem-solving mindset** | Identifying problems, proposing solutions, creativity | ☐ | ✅ | ☐ |
+| 11 | **Contribution to project/organization** | Work efficiency, initiatives, recognition from the team | ☐ | ✅ | ☐ |
+| 12 | **Overall** | General assessment of the entire internship process | ☐ | ✅ | ☐ |
 
-| No. | Criteria                            | Description                                                                                      | Good | Fair | Average |
-| --- | ----------------------------------- | ------------------------------------------------------------------------------------------------ | ---- | ---- | ------- |
-| 1   | **Professional knowledge & skills** | Understanding of the field, applying knowledge in practice, proficiency with tools, work quality | ✅    | ☐    | ☐       |
-| 2   | **Ability to learn**                | Ability to absorb new knowledge and learn quickly                                                | ☐    | ✅    | ☐       |
-| 3   | **Proactiveness**                   | Taking initiative, seeking out tasks without waiting for instructions                            | ✅    | ☐    | ☐       |
-| 4   | **Sense of responsibility**         | Completing tasks on time and ensuring quality                                                    | ✅    | ☐    | ☐       |
-| 5   | **Discipline**                      | Adhering to schedules, rules, and work processes                                                 | ☐    | ☐    | ✅       |
-| 6   | **Progressive mindset**             | Willingness to receive feedback and improve oneself                                              | ☐    | ✅    | ☐       |
-| 7   | **Communication**                   | Presenting ideas and reporting work clearly                                                      | ☐    | ✅    | ☐       |
-| 8   | **Teamwork**                        | Working effectively with colleagues and participating in teams                                   | ✅    | ☐    | ☐       |
-| 9   | **Professional conduct**            | Respecting colleagues, partners, and the work environment                                        | ✅    | ☐    | ☐       |
-| 10  | **Problem-solving skills**          | Identifying problems, proposing solutions, and showing creativity                                | ☐    | ✅    | ☐       |
-| 11  | **Contribution to project/team**    | Work effectiveness, innovative ideas, recognition from the team                                  | ✅    | ☐    | ☐       |
-| 12  | **Overall**                         | General evaluation of the entire internship period                                               | ✅    | ☐    | ☐       |
+### Areas for improvement
 
-### Needs Improvement
-
-* Strengthen discipline and strictly comply with the rules and regulations of the company or any organization  
-* Improve problem-solving thinking  
-* Enhance communication skills in both daily interactions and professional contexts, including handling situations effectively
+* Manage time more effectively to balance theoretical learning, lab practice, and planning the report earlier.
+* Practice explaining AWS architecture in a more concise, structured, and easy-to-follow manner.
+* Gain a deeper understanding of CI/CD, IAM permissions, security best practices, and cost optimization.
+* Learning to communicate better in both daily life and work, and handling situations when encountering errors

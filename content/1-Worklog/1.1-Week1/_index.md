@@ -1,57 +1,31 @@
 ---
 title: "Week 1 Worklog"
-date: 2024-01-01
+date: 2026-04-17
 weight: 1
 chapter: false
 pre: " <b> 1.1. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 1 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Join the Kickoff meeting of the FCAJ program - Workforce Bootcamp 2026 at Hutech Campus E.
+* Connect with FCAJ team members and understand internship regulations clearly.
+* Learn the general overview of Cloud Computing and AWS services.
+* Complete 5 basic tasks on AWS Console to receive $100 credit.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
+| 1   | - Register an AWS account successfully.<br>- Complete 5 AWS service tasks to get $100 credit for the upcoming project (Launch EC2 Instance, Use Amazon Bedrock Playground, Set up AWS Budgets, Create Lambda Web App, Create RDS Database).<br>- Join the FCAJ Kickoff meeting at Hutech Campus E and meet team members. | 17/04/2026   | 17/04/2026      | <https://000001.awsstudygroup.com/> |
+| 2   | - Read and understand the rules and regulations of the internship and FCAJ AWS Vietnam community, committing to following them well.<br>- Actively find and connect with 5 members to form a team for group study and project. | 18/04/2026   | 18/04/2026      | <https://rules.fcjuni.com/1-regulations/> |
+| 3   | - Watch AWS introductory videos and study the benefits of cloud computing (cost optimization with pay-as-you-go model, faster product development speed, global infrastructure scalability). | 19/04/2026   | 19/04/2026      | <https://youtu.be/qVCF7UjYC5s> |
+| 4   | - Learn about the AWS Management Console.<br>- Distinguish the Root account (only for account creation) and learn how to create/use an IAM User for daily work to stay safe.<br>- Learn how to create and submit a Support Case when facing errors on AWS. | 20/04/2026   | 20/04/2026      | <https://youtu.be/95quNuhvMT0> |
 
 ### Week 1 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Successfully attended the Kickoff meeting, met mentors, and successfully formed a 5-member study group.
+* Clearly understood the rules and committed to following the regulations of the FCAJ AWS Vietnam community.
+* Successfully received $100 credit by completing the first 5 hands-on tasks: Launch EC2, Bedrock Playground, AWS Budgets, Lambda Web App, and RDS Database.
+* Mastered the core benefits of cloud computing (pay-as-you-go, fast deployment, global scale).
+* Became familiar with and knew how to navigate the AWS Management Console interface.
+* Understood account security concepts: Keep the Root account safe, use IAM User for daily tasks, and know the process to open a Support Case for technical issues.

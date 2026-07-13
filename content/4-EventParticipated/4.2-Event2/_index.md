@@ -1,126 +1,87 @@
 ---
 title: "Event 2"
-date: 2024-01-01
-weight: 1
+date: 2026-06-27
+weight: 2
 chapter: false
 pre: " <b> 4.2. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
+# Event Report: FCAJ Community Day
 
-# Summary Report: “GenAI-powered App-DB Modernization workshop”
+## Event Objectives
 
-### Event Objectives
+- Explore how Artificial Intelligence is reshaping enterprise operations and cloud environments.
+- Learn how AI can improve DevOps workflows, monitoring, and incident management.
+- Understand practical ways to integrate AWS services with Generative AI solutions.
+- Discover modern AI architectures that emphasize scalability, reliability, and security.
+- Gain valuable knowledge from technical sessions and live demonstrations delivered by industry experts.
 
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
+## Speakers
 
-### Speakers
+- **Truong Tran** – AI Solution Sales, Noventiq
+- **Anh Dang** – AI Solution Sales, Noventiq
+- **Steve Tran** – CTO & Founder, Cloud Thinker
+- **Trung Vu** – CEO, Revve AI
+- **Bao Phan** – Cloud Engineer, Cloud Kinetics
+- **Nguyen Nguyen** – Cloud Engineer, Cloud Kinetics
+- **Nghi Danh** – AI Engineer, Renova Cloud
+- **Kiet Tran** – AWS Student Builder
+- **Toan Nguyen** – AWS Security Builder
 
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+## Key Highlights
 
-### Key Highlights
+### 1. AI for Operations and Incident Response
 
-#### Identifying the drawbacks of legacy application architecture
+- Introduced the Deep Response Engine for intelligent incident handling.
+- Shifted from alert-based monitoring to automated action-based operations.
+- Reduced response time and operational workload.
+- Improved overall service reliability through automation.
 
-- Long product release cycles → Lost revenue/missed opportunities  
-- Inefficient operations → Reduced productivity, higher costs  
-- Non-compliance with security regulations → Security breaches, loss of reputation  
+### 2. Next-Generation Voice Agents
 
-#### Transitioning to modern application architecture – Microservices
+- Compared traditional chatbots with modern speech-to-speech AI systems.
+- Demonstrated Amazon Nova Sonic for more natural conversations.
+- Addressed latency and communication quality challenges.
+- Showcased enterprise use cases for AI voice assistants.
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+### 3. AWS DevOps Agent
 
-- **Queue Management**: Handle asynchronous tasks  
-- **Caching Strategy**: Optimize performance  
-- **Message Handling**: Flexible inter-service communication  
+- Applied AI to monitor cloud infrastructure in real time.
+- Accelerated issue detection and troubleshooting processes.
+- Supported Hybrid Cloud and Multi-Cloud environments.
+- Improved engineering productivity with intelligent automation.
 
-#### Domain-Driven Design (DDD)
+### 4. AI for Enterprise Productivity
 
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts  
-- **Bookstore case study**: Demonstrates real-world DDD application  
-- **Context mapping**: 7 patterns for integrating bounded contexts  
+- Demonstrated Amazon Q for HR and internal knowledge management.
+- Automated repetitive HR and administrative tasks.
+- Enabled data-driven business decision making.
+- Increased employee productivity using AI-powered assistants.
 
-#### Event-Driven Architecture
+### 5. Secure Private MCP
 
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming  
-- **Benefits**: Loose coupling, scalability, resilience  
-- **Sync vs async comparison**: Understanding the trade-offs  
+- Introduced the Model Context Protocol (MCP) for AI integration.
+- Connected AI assistants securely with internal enterprise systems.
+- Leveraged private networking using Amazon VPC.
+- Strengthened security and governance for enterprise AI deployments.
 
-#### Compute Evolution
+## Lessons Learned
 
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda  
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value  
-- **Functions vs Containers**: Criteria for appropriate choice  
+- AI delivers greater value when combined with well-designed operational processes.
+- Effective system architecture is essential before integrating AI into enterprise applications.
+- Protecting sensitive data should always be a priority when deploying AI solutions.
+- AWS services and Generative AI complement each other in solving real business challenges.
+- Continuous learning in cloud technologies and AI is important for future software engineers.
 
-#### Amazon Q Developer
+## Experience After the Event
 
-- **SDLC automation**: From planning to maintenance  
-- **Code transformation**: Java upgrade, .NET modernization  
-- **AWS Transform agents**: VMware, Mainframe, .NET migration  
+- The event provided a practical understanding of how AI is adopted in real-world enterprises.
+- Technical presentations introduced modern approaches to cloud computing and DevOps.
+- Live demonstrations made complex AI concepts easier to understand.
+- It was a valuable opportunity to learn from experienced professionals and stay updated with current technology trends.
 
-### Key Takeaways
+> **Conclusion:** FCAJ Community Day provided valuable insights into AWS, Artificial Intelligence, and DevOps, demonstrating how these technologies can be combined to build secure, scalable, and intelligent enterprise solutions.
 
-#### Design Mindset
+## Some photos from the event
 
-- **Business-first approach**: Always start from the business domain, not the technology  
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams  
-- **Bounded contexts**: Identifying and managing complexity in large systems  
-
-#### Technical Architecture
-
-- **Event storming technique**: Practical method for modeling business processes  
-- Use **event-driven communication** instead of synchronous calls  
-- **Integration patterns**: When to use sync, async, pub/sub, streaming  
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless  
-
-#### Modernization Strategy
-
-- **Phased approach**: No rushing — follow a clear roadmap  
-- **7Rs framework**: Multiple modernization paths depending on the application  
-- **ROI measurement**: Cost reduction + business agility  
-
-### Applying to Work
-
-- **Apply DDD** to current projects: Event storming sessions with business teams  
-- **Refactor microservices**: Use bounded contexts to define service boundaries  
-- **Implement event-driven patterns**: Replace some sync calls with async messaging  
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases  
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity  
-
-### Event Experience
-
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
-
-#### Learning from highly skilled speakers
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.  
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
-
-#### Hands-on technical exposure
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
-
-#### Leveraging modern tools
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
-
-#### Networking and discussions
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
-
-#### Lessons learned
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
-
-#### Some event photos
-*Add your event photos here*  
-
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+![](/images/event2-1.jpg)

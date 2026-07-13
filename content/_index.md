@@ -5,13 +5,6 @@ weight: 1
 chapter: false
 ---
 
-    
-# Internship Report
-
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
-
 ### Student Information:
 &emsp; **Full Name:** Duong Thanh Phong
 
@@ -31,7 +24,7 @@ chapter: false
 
 &emsp; **Internship Duration:** From 17/04/2026 to 17/07/2026
 
-![Your profile picture](/images/anhAvartar.jpg)
+![Your profile picture](images/anhAvartar.png)
 
 ### Report Content
 

@@ -1,57 +1,32 @@
 ---
 title: "Week 2 Worklog"
-date: 2024-01-01
-weight: 1
+date: 2026-04-24
+weight: 2
 chapter: false
 pre: " <b> 1.2. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 2 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Study core concepts of AWS VPC (Virtual Private Cloud) and its networking features.
+* Distinguish between security firewalls in AWS networking (Security Groups and NACLs).
+* Practice building a basic network infrastructure (VPC, Subnet, Route Table, Internet Gateway) on the AWS Console.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
+| 1   | - Learn Module 02_01: AWS VPC. Understand the role of a private, isolated virtual network environment on the Cloud.<br>- Select the Singapore Region to optimize latency for Vietnamese users.<br>- Study CIDR notation for IPv4/IPv6 and design a VPC covering at least 3 AZs. | 24/04/2026   | 24/04/2026      | <https://youtu.be/O9Ac_vGHquM?si=w4rXO8E9eY7so_Og> |
+| 2   | - Continue studying VPC Subnets to divide the network for better organization and security control.<br>- Differentiate and understand the usage of Public Subnets (with Internet, for Web servers) and Private Subnets (no Internet, for Databases). | 25/04/2026   | 25/04/2026      | <https://youtu.be/O9Ac_vGHquM?si=w4rXO8E9eY7so_Og> |
+| 3   | - Research Route Tables to direct network traffic for both Public and Private Subnets.<br>- Learn about the default Route Table of a VPC (which allows all subnets to communicate internally). | 26/04/2026   | 26/04/2026      | <https://youtu.be/O9Ac_vGHquM?si=w4rXO8E9eY7so_Og> |
+| 4   | - Learn other key networking components: ENI (Virtual network card attached to EC2), VPC Endpoints, Internet Gateways, and NAT Gateways. | 27/04/2026   | 27/04/2026      | <https://youtu.be/O9Ac_vGHquM?si=fI-T6CMmJfzIVo4> |
+| 5   | - **Practice Module 02 - Lab 03:** Successfully deploy a basic network topology on the AWS Console, including: Creating a VPC, creating Subnets, setting up Route Tables, and configuring an Internet Gateway. | 28/04/2026   | 28/04/2026      | <https://000003.awsstudygroup.com/3-prerequisite/> |
+| 6   | - Learn Module 02_02: VPC Security. Deep dive into **Security Groups**.<br>- Understand the Stateful nature, application on ENIs, and how it blocks all inbound traffic by default while allowing outbound traffic. | 29/04/2026   | 29/04/2026      | <https://youtu.be/BPuD1l2hEQ4?si=YwiJjhpn0Nngdf8r> |
+| 7   | - Study the second layer of defense: **Network ACLs (NACLs)**.<br>- Master the Stateless nature (requires configuring both directions), application at the Subnet level, and how rules are processed from top to bottom. | 30/04/2026   | 30/04/2026      | <https://youtu.be/BPuD1l2hEQ4?si=YwiJjhpn0Nngdf8r> |
 
 ### Week 2 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Understood VPC operations as a virtual network, including CIDR design and multi-AZ (3 AZs) setup in Singapore.
+* Clearly distinguished between the purpose and configuration of Public Subnets versus Private Subnets.
+* Mastered Route Table traffic routing and Internet Gateway connectivity.
+* Differentiated between the Stateful nature of Security Groups (resource-level) and the Stateless nature of NACLs (subnet-level).
+* Successfully completed Lab 03, deploying a core network infrastructure including VPC, Subnets, Route Tables, and Internet Gateways.

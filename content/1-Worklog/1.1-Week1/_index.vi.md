@@ -1,59 +1,31 @@
 ---
 title: "Worklog Tuần 1"
-date: 2024-01-01
+date: 2026-04-17
 weight: 1
 chapter: false
 pre: " <b> 1.1. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 1:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Tham gia buổi Kickoff chương trình FCAJ - Workforce Bootcamp 2026 tại đơn vị trường Hutech khu E.
+* Kết nối, làm quen với các thành viên trong team FCAJ và nắm rõ quy chế thực tập.
+* Tìm hiểu tổng quan về Điện toán đám mây và dịch vụ AWS.
+* Hoàn thành 5 nhiệm vụ dịch vụ cơ bản trên AWS Console để nhận $100 credit.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| 1   | - Đăng ký thành công tài khoản AWS.<br>- Hoàn thành 5 task dịch vụ AWS để kiếm thêm $100 credit làm đồ án (Launch EC2 Instance, Use Amazon Bedrock Playground, Set up AWS Budgets, Create Lambda Web App, Create RDS Database).<br>- Tham gia buổi Kickoff chương trình FCAJ tại Hutech khu E và làm quen các thành viên trong nhóm. | 17/04/2026   | 17/04/2026      | <https://000001.awsstudygroup.com/> |
+| 2   | - Đọc và nắm rõ các nội quy, quy định của đơn vị thực tập và cộng đồng FCAJ AWS Việt Nam, cam kết thực hiện tốt nội quy.<br>- Chủ động tìm kiếm và kết nối đủ 5 thành viên để thực tập nhóm và làm dự án cùng nhau. | 18/04/2026   | 18/04/2026      | <https://rules.fcjuni.com/1-regulations/> |
+| 3   | - Xem video giới thiệu về AWS và nghiên cứu các lợi ích của điện toán đám mây (tối ưu chi phí sài bao nhiêu tính bấy nhiêu, tăng tốc độ xây dựng sản phẩm, khả năng mở rộng quy mô hạ tầng toàn cầu). | 19/04/2026   | 19/04/2026      | <https://youtu.be/qVCF7UjYC5s> |
+| 4   | - Tìm hiểu AWS Management Console.<br>- Phân biệt tài khoản Root (chỉ dùng tạo tài khoản) và cách tạo/sử dụng tài khoản IAM User cho mọi công việc hằng ngày để đảm bảo an toàn.<br>- Học cách tạo và gửi Support Case khi gặp sự cố lúc thao tác trên AWS. | 20/04/2026   | 20/04/2026      | <https://youtu.be/95quNuhvMT0> |
 
 ### Kết quả đạt được tuần 1:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Tham gia đầy đủ buổi Kickoff, làm quen ban cố văn và thiết lập thành công nhóm học tập gồm 5 thành viên.
+* Hiểu rõ toàn bộ quy chế và cam kết tuân thủ nghiêm túc các quy định của cộng đồng FCAJ AWS Việt Nam.
+* Nhận thành công $100 credit nhờ hoàn thành tốt 5 bài thực hành dịch vụ đầu tiên: Launch EC2, Bedrock Playground, AWS Budgets, Lambda Web App, và RDS Database.
+* Nắm vững các lợi ích cốt lõi của điện toán đám mây (pay-as-you-go, triển khai nhanh, quy mô toàn cầu).
+* Làm quen và biết cách thao tác trên giao diện AWS Management Console.
+* Hiểu nguyên tắc bảo mật tài khoản: Giữ an toàn tài khoản Root, sử dụng IAM User cho công việc và biết cách gửi Support Case khi gặp lỗi kỹ thuật.

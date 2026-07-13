@@ -1,0 +1,39 @@
+<style type="text/css">
+.ghContributors {
+    display: flex;
+    flex-flow: wrap;
+    align-content: flex-start;
+}
+
+.ghContributors > div {
+    width: 50%;
+    display: inline-flex;
+    margin-bottom: 5px;
+}
+.ghContributors > div label {
+    padding-left: 4px;
+}
+.ghContributors > div span {
+    font-size: x-small;
+    padding-left: 4px;
+}
+</style>
+<div class="ghContributors">
+{{ $url := .Get 0 }}
+{{ with resources.GetRemote $url }}
+  {{ with .Err }}
+    <!-- Bỏ qua lỗi nếu không lấy được data -->
+  {{ else }}
+    {{ $data := . | transform.Unmarshal }}
+    {{ range $data }}
+    <div>
+        <img src="{{ .avatar_url }}" class="inline" width="40" height="40" style="border-radius: 50%;">
+        <div style="display: flex; flex-direction: column;">
+            <label><a href="{{ .html_url }}" target="_blank"><b>{{ .login }}</b></a></label>
+            <span>Contributions: {{ .contributions }}</span>
+        </div>
+    </div>
+    {{ end }}
+  {{ end }}
+{{ end }}
+</div>

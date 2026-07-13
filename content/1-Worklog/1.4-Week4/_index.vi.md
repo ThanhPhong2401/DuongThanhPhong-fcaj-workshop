@@ -1,59 +1,30 @@
 ---
 title: "Worklog Tuần 4"
-date: 2024-01-01
-weight: 1
+date: 2026-05-08
+weight: 4
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 4:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Thực hành nâng cao về kết nối trung tâm với AWS Transit Gateway.
+* Tìm hiểu tổng quan về VPN, DirectConnect và các dịch vụ Load Balancer.
+* Nắm vững kiến thức nền tảng về dịch vụ tính toán (EC2), lưu trữ (EBS, EFS) và di trú hệ thống trên AWS.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| 1   | - Thực hành Lab 20: Thiết lập AWS Transit Gateway.<br>- Cấu hình Transit Gateway, Attachment, Route Table và dọn dẹp tài nguyên qua CloudFormation. | 08/05/2026   | 08/05/2026      | <https://000020.awsstudygroup.com/> |
+| 2   | - Học Module 02_03: Tìm hiểu về VPN, DirectConnect và các giải pháp Load Balancer. | 09/05/2026   | 09/05/2026      | <https://youtu.be/CXU8d3kyxlc> |
+| 3   | - Học Module 03_01: Các dịch vụ Compute (EC2, Lightsail) và lưu trữ mạng (EFS, FSX).<br>- Tìm hiểu về AWS Application Migration Service (MGN). | 10/05/2026   | 10/05/2026      | <https://youtu.be/-t5h4N6vfBs>, <https://youtu.be/e7XeKdOVq40> |
+| 4   | - Học Module 03_01_02 & 03: EC2 Instances, AMI, Keypair và EBS (Elastic Block Store). | 11/05/2026   | 11/05/2026      | <https://youtu.be/yAR6QRT3N1k>, <https://youtu.be/hKr_TfGP7NY> |
+| 5   | - Học Module 03_01_04 đến 07: Instance Store, User Data, Metadata và kiến thức về Auto Scaling. | 12/05/2026   | 12/05/2026      | - |
 
 ### Kết quả đạt được tuần 4:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Triển khai thành công Transit Gateway để kết nối tập trung các VPC.
+* Hiểu cơ chế hoạt động của VPN, DirectConnect và Load Balancer trong hệ thống mạng doanh nghiệp.
+* Nắm vững kiến thức về EC2, Lightsail và các giải pháp lưu trữ chia sẻ qua mạng (EFS/FSX).
+* Hiểu cách sử dụng AMI, Keypair, EBS và các tính năng bổ trợ (User data, Metadata) cho EC2.
+* Nắm bắt được quy trình phục hồi hệ thống sau sự cố thông qua Application Migration Service.

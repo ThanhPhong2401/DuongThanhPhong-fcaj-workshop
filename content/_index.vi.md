@@ -1,40 +1,37 @@
 ---
-title: "Báo cáo thực tập"
+title: "Báo Cáo Thực Tập"
 date: 2024-01-01
 weight: 1
 chapter: false
 ---
 
-# Báo cáo thực tập
-### Thông tin sinh viên:
-&emsp; **Họ và tên:** Nguyễn Văn A
+### Thông Tin Sinh Viên:
+&emsp; **Họ và Tên:** Dương Thanh Phong
 
-&emsp; **Số điện thoại:** 0989888999
+&emsp; **Số Điện Thoại:** 0947299915
 
-&emsp; **Email:** Anguyenvan@gmail.com
+&emsp; **Email:** duongthanhphongbh.2004@gmail.com
 
-&emsp; **Trường:** Đại học Sư phạm Kỹ thuật TP.HCM
+&emsp; **Trường Đại Học:** Đại học Công nghệ TP.HCM (HUTECH)
 
-&emsp; **Ngành:** Công nghệ thông tin
+&emsp; **Chuyên Ngành:** Công nghệ Thông tin (Kỹ thuật Phần mềm)
 
-&emsp; **Lớp:** AWS082025
+&emsp; **Lớp:** AWS042026
 
-&emsp; **Công ty thực tập:** Công ty TNHH Amazon Web Services Vietnam
+&emsp; **Công Ty Thực Tập:** Công ty TNHH Amazon Web Services Việt Nam
 
-&emsp; **Vị trí thực tập:** FCJ Cloud Intern
+&emsp; **Vị Trí Thực Tập:** Workforce Bootcamp 2026 - First Cloud AI Journey
 
-&emsp; **Thời gian thực tập:** Từ ngày 12/08/2025 đến ngày 12/11/2025
+&emsp; **Thời Gian Thực Tập:** Từ 17/04/2026 đến 17/07/2026
 
-![Ảnh đại diện của bạn](/images/avatar.png)
+![Ảnh đại diện của bạn](/images/anhAvartar.png)
 
+### Nội Dung Báo Cáo
 
-
-### Nội dung báo cáo
-
-1.  [Worklog](1-Worklog/)
-2.  [Proposal](2-Proposal/)
-3.  [Các bài blogs đã dịch](3-BlogsTranslated/)
-4.  [Các events đã tham gia](4-EventParticipated/)
-5.  [Workshop](5-Workshop/)
-6.  [Tự đánh giá](6-Self-evaluation/)
-7.  [Chia sẻ, đóng góp ý kiến](7-Feedback/)
+1.  [Nhật Ký Công Việc](1-Worklog/)
+2.  [Đề Xuất](2-Proposal/)
+3.  [Các Bài Blog Đã Dịch](3-BlogsTranslated/)
+4.  [Các Sự Kiện Đã Tham Gia](4-EventParticipated/)
+5.  [Hội Thảo](5-Workshop/)
+6.  [Tự Đánh Giá](6-Self-evaluation/)
+7.  [Chia Sẻ và Phản Hồi](7-Feedback/)
