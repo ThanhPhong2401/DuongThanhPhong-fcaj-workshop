@@ -26,3 +26,7 @@ pre: " <b> 1.5. </b> "
 * Proficient in configuring secure VPC Peering for inter-VPC communications.
 * Mastered the workflow for managing data backups and disaster recovery restores on AWS.
 * Successfully deployed Storage Gateway and configured file share access.
+
+![Image](/images/week5aa.png)
+![Image](/images/week5bb.png)
+![Image](/images/week5cc.png)

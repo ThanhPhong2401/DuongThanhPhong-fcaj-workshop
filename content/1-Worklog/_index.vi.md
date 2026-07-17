@@ -1,40 +1,36 @@
 ---
 title: "Nhật ký công việc"
-date: 2024-01-01
+date: 2026-07-10
 weight: 1
 chapter: false
 pre: " <b> 1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
-**Trong trang này** bạn sẽ cần giới thiệu worklog của bạn **như thế nào**? Bạn hoàn thành chương trình trong vòng **bao nhiêu tuần**? Bạn **đã làm gì** trong các tuần đó?
+### Trong suốt quá trình thực tập tại cộng đồng FCAJ AWS, em đã ghi chép lại toàn bộ lộ trình học tập, nghiên cứu và thực hành của mình thông qua hệ thống Nhật ký công việc (Worklog). 
 
+#### Chương trình thực tập của em được thiết kế và hoàn thành trong vòng **12 tuần**. Dưới đây là tóm tắt các nội dung và công việc chi tiết mà em đã triển khai qua từng tuần:
 
-Thông thường và cũng là tiêu chuẩn, một worklog được thực hiện trong khoảng 3 tháng (trong suốt thời gian thực tập) với nội dung các tuần như sau:
+**Tuần 1:** [Khởi động chương trình FCAJ, đăng ký tài khoản và hoàn thành 5 task dịch vụ AWS cơ bản](1.1-week1/)
 
-**Tuần 1:** [Làm quen với AWS và các dịch vụ cơ bản trong AWS](1.1-week1/)
+**Tuần 2:** [Tìm hiểu kiến thức mạng VPC cơ bản, thiết lập phân chia Subnet và cấu hình Security Group, NACL](1.2-week2/)
 
-**Tuần 2:** [Làm công việc A...](1.2-week2/)
+**Tuần 3:** [Nghiên cứu cơ chế kết nối nâng cao VPC Peering, Transit Gateway và thực hành thiết lập Bastion Host](1.3-week3/)
 
-**Tuần 3:** [Làm công việc B...](1.3-week3/)
+**Tuần 4:** [Thực hành cấu hình AWS Transit Gateway, tìm hiểu các giải pháp Load Balancer và các dịch vụ lưu trữ EBS, EFS](1.4-week4/)
 
-**Tuần 4:** [Làm công việc C...](1.4-week4/)
+**Tuần 5:** [Tìm hiểu cơ chế EC2 Auto Scaling, thực hành thiết lập VPC Peering liên vùng và giải pháp Storage Gateway](1.5-week5/)
 
-**Tuần 5:** [Làm công việc D...](1.5-week5/)
+**Tuần 6:** [Nghiên cứu kiến trúc Amazon S3 chuyên sâu, thực hành lưu trữ tĩnh và tìm hiểu dịch vụ Snow Family cùng giải pháp sao lưu](1.6-week6/)
 
-**Tuần 6:** [Làm công việc E...](1.6-week6/)
+**Tuần 7:** [Thực hành thiết lập Backup plan trên S3, tìm hiểu quy trình xuất/nhập và di chuyển máy ảo lên đám mây AWS](1.7-week7/)
 
-**Tuần 7:** [Làm công việc G...](1.7-week7/)
+**Tuần 8:** [Nghiên cứu mô hình trách nhiệm chia sẻ, dịch vụ Amazon Cognito, AWS Organization và hệ thống quản lý khóa KMS](1.8-week8/)
 
-**Tuần 8:** [Làm công việc H...](1.8-week8/)
+**Tuần 9:** [Tìm hiểu tổng quan kiến thức Database, thực hành Lab bảo mật và đánh giá tài nguyên với AWS Security Hub](1.9-week9/)
 
-**Tuần 9:** [Làm công việc I...](1.9-week9/)
+**Tuần 10:** [Tìm hiểu chuyên sâu dịch vụ Amazon RDS, Aurora, thực hành Lab quản trị DB và phác thảo sơ đồ kiến trúc dự án nhóm](1.10-week10/)
 
-**Tuần 10:** [Làm công việc L...](1.10-week10/)
+**Tuần 11:** [Nghiên cứu giải pháp Redshift, ElastiCache, thực hành Lab chuyên sâu DB và viết blog kỹ thuật chia sẻ tới cộng đồng](1.11-week11/)
 
-**Tuần 11:** [Làm công việc M...](1.11-week11/)
-
-**Tuần 12:** [Làm công việc N...](1.12-week12/)
+**Tuần 12:** [Đang cập nhật...](1.12-week12/)

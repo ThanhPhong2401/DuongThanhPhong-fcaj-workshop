@@ -29,3 +29,6 @@ pre: " <b> 1.1. </b> "
 * Nắm vững các lợi ích cốt lõi của điện toán đám mây (pay-as-you-go, triển khai nhanh, quy mô toàn cầu).
 * Làm quen và biết cách thao tác trên giao diện AWS Management Console.
 * Hiểu nguyên tắc bảo mật tài khoản: Giữ an toàn tài khoản Root, sử dụng IAM User cho công việc và biết cách gửi Support Case khi gặp lỗi kỹ thuật.
+
+![Image](/images/Bootcamp2026.jpg)
+![Image](/images/exploreAWS.png)

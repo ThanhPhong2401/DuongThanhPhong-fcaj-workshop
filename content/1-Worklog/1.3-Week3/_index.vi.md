@@ -29,3 +29,6 @@ pre: " <b> 1.3. </b> "
 * Hiểu và triển khai thực tế NAT Gateway để đảm bảo private instance truy cập được internet.
 * Triển khai thành công kết nối an toàn với EC2 Instance Connect Endpoint.
 * Thực hành cấu hình đồng bộ Routing, Security Group và NACL để cho phép liên lạc an toàn giữa các VPC khác nhau.
+
+![Image](/images/week.png)
+![Image](/images/week1.png)

@@ -26,3 +26,5 @@ pre: " <b> 1.8. </b> "
 * Proficient in managing IAM users, roles, and policies for secure access control.
 * Mastered user authentication for apps via Cognito and multi-account management with AWS Organization.
 * Learned to centralize access via AWS Identity Center and manage data encryption keys using KMS.
+
+![Image](/images/week8.png)

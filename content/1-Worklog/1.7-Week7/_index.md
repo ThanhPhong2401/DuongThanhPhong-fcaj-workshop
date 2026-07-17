@@ -24,3 +24,7 @@ pre: " <b> 1.7. </b> "
 * Gained clear understanding of migrating, importing, and exporting VMs from on-premise environments to AWS.
 * Proficient in managing S3 access permissions through bucket ACLs.
 * Successfully deployed EC2 instances directly from migrated virtual machine files.
+
+![Image](/images/week5b.png)
+![Image](/images/week5c.png)
+![Image](/images/week5d.png)

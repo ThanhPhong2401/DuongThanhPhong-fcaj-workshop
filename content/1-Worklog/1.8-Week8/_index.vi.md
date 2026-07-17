@@ -26,3 +26,5 @@ pre: " <b> 1.8. </b> "
 * Thành thạo quản lý IAM user, role và các chính sách (policies) để phân quyền bảo mật.
 * Nắm vững cách xác thực người dùng web/di động với Cognito và quản lý nhiều tài khoản với AWS Organization.
 * Biết cách tập trung quyền truy cập bằng AWS Identity Center và quản lý khóa mã hóa dữ liệu với KMS.
+
+![Image](/images/week8.png)

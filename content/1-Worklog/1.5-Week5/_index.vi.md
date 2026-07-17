@@ -26,3 +26,7 @@ pre: " <b> 1.5. </b> "
 * Thành thạo kỹ thuật thiết lập VPC Peering để kết nối hệ thống giữa các VPC khác nhau một cách bảo mật.
 * Nắm vững quy trình quản lý sao lưu (Backup) và phục hồi dữ liệu (Restore) trên AWS.
 * Triển khai thành công giải pháp Storage Gateway và thiết lập chia sẻ tệp tin (File Shares).
+
+![Image](/images/week5aa.png)
+![Image](/images/week5bb.png)
+![Image](/images/week5cc.png)

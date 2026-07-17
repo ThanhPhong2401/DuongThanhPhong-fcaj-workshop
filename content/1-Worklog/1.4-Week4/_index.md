@@ -28,3 +28,9 @@ pre: " <b> 1.4. </b> "
 * Mastered EC2, Lightsail, and network-attached storage solutions (EFS/FSX).
 * Gained proficiency in using AMIs, Keypairs, EBS, and EC2 advanced features (User data, Metadata).
 * Comprehended the workflow for disaster recovery using the Application Migration Service.
+
+![Image](/images/week4a.png)
+![Image](/images/week4b.png)
+![Image](/images/week4c.png)
+![Image](/images/week4d.png)
+![Image](/images/week4e.jpg)

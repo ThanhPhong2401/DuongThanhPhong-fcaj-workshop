@@ -29,3 +29,6 @@ pre: " <b> 1.1. </b> "
 * Mastered the core benefits of cloud computing (pay-as-you-go, fast deployment, global scale).
 * Became familiar with and knew how to navigate the AWS Management Console interface.
 * Understood account security concepts: Keep the Root account safe, use IAM User for daily tasks, and know the process to open a Support Case for technical issues.
+
+![Image](/images/Bootcamp2026.jpg)
+![Image](/images/exploreAWS.png)

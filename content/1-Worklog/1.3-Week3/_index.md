@@ -29,3 +29,6 @@ pre: " <b> 1.3. </b> "
 * Implemented NAT Gateway to enable internet access for instances in private subnets.
 * Successfully deployed secure connections with EC2 Instance Connect Endpoint.
 * Configured Routing, Security Groups, and NACLs to ensure secure communication between distinct VPCs.
+
+![Image](/images/week.png)
+![Image](/images/week1.png)

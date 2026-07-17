@@ -1,126 +1,135 @@
 ---
-title: "Blog 2"
+title: "Blog 2 - Claude Apps Gateway for AWS – What I learned from the AWS Machine Learning Blog"
 date: 2024-01-01
 weight: 2
 chapter: false
 pre: " <b> 3.2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-# Getting Started with Healthcare Data Lakes: Using Microservices
+> **Original article:** *Introducing Claude Apps Gateway for AWS*  
+> **Authors:** Dani Mitchell, Ayan Ray, Sofian Hamiti, and Harshetha Narayan  
+> **Published:** July 8, 2026 – AWS Machine Learning Blog
 
-Data lakes can help hospitals and healthcare facilities turn data into business insights, maintain business continuity, and protect patient privacy. A **data lake** is a centralized, managed, and secure repository to store all your data, both in its raw and processed forms for analysis. Data lakes allow you to break down data silos and combine different types of analytics to gain insights and make better business decisions.
+## Why I wrote this post
 
-This blog post is part of a larger series on getting started with setting up a healthcare data lake. In my final post of the series, *“Getting Started with Healthcare Data Lakes: Diving into Amazon Cognito”*, I focused on the specifics of using Amazon Cognito and Attribute Based Access Control (ABAC) to authenticate and authorize users in the healthcare data lake solution. In this blog, I detail how the solution evolved at a foundational level, including the design decisions I made and the additional features used. You can access the code samples for the solution in this Git repo for reference.
+While exploring AI services on AWS, I regularly read the AWS Machine Learning Blog to learn about new technologies. The Claude Apps Gateway article helped me understand that enterprise AI is not only about choosing a powerful model. Organizations also need centralized identity management, access control, policy enforcement, telemetry, routing, and cost governance.
 
----
+I wrote this post to summarize the key ideas from the article and relate them to the AWS infrastructure services I learned during my internship.
 
-## Architecture Guidance
+![Claude Apps Gateway architecture for AWS](/images/hình.jpg)
 
-The main change since the last presentation of the overall architecture is the decomposition of a single service into a set of smaller services to improve maintainability and flexibility. Integrating a large volume of diverse healthcare data often requires specialized connectors for each format; by keeping them encapsulated separately as microservices, we can add, remove, and modify each connector without affecting the others. The microservices are loosely coupled via publish/subscribe messaging centered in what I call the “pub/sub hub.”
+*Figure 1. Claude Apps Gateway architecture for AWS. (Source: AWS Machine Learning Blog)*
 
-This solution represents what I would consider another reasonable sprint iteration from my last post. The scope is still limited to the ingestion and basic parsing of **HL7v2 messages** formatted in **Encoding Rules 7 (ER7)** through a REST interface.
+## My first impression
 
-**The solution architecture is now as follows:**
+At first, I thought Claude Apps Gateway was simply a tool for connecting Claude with AWS.
 
-> *Figure 1. Overall architecture; colored boxes represent distinct services.*
+After reading the article, I realized that it is actually a self-hosted control plane that helps organizations centrally manage Claude Code and Claude Desktop.
 
----
+In large organizations, providing credentials for every developer, distributing configuration files, and tracking AI usage individually can become difficult. Claude Apps Gateway solves this problem by providing a centralized management layer.
 
-While the term *microservices* has some inherent ambiguity, certain traits are common:  
-- Small, autonomous, loosely coupled  
-- Reusable, communicating through well-defined interfaces  
-- Specialized to do one thing well  
-- Often implemented in an **event-driven architecture**
 
-When determining where to draw boundaries between microservices, consider:  
-- **Intrinsic**: technology used, performance, reliability, scalability  
-- **Extrinsic**: dependent functionality, rate of change, reusability  
-- **Human**: team ownership, managing *cognitive load*
+## What does Claude Apps Gateway provide?
 
----
+Claude Apps Gateway sits between users and the AI service. Every request passes through the Gateway before reaching either Amazon Bedrock or Claude Platform on AWS.
 
-## Technology Choices and Communication Scope
+Its primary responsibilities include:
 
-| Communication scope                       | Technologies / patterns to consider                                                        |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Within a single microservice              | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Between microservices in a single service | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Between services                          | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+### Identity
 
----
+- Enterprise Single Sign-On (SSO) using OIDC.
+- Short-lived authentication sessions.
+- No long-lived credentials stored on developers' computers.
 
-## The Pub/Sub Hub
+### Policy
 
-Using a **hub-and-spoke** architecture (or message broker) works well with a small number of tightly related microservices.  
-- Each microservice depends only on the *hub*  
-- Inter-microservice connections are limited to the contents of the published message  
-- Reduces the number of synchronous calls since pub/sub is a one-way asynchronous *push*
+- Centralized control over model permissions.
+- Tool permissions.
+- Default configuration settings.
+- Policies can be applied to different identity-provider groups.
 
-Drawback: **coordination and monitoring** are needed to avoid microservices processing the wrong message.
+### Telemetry
 
----
+- Usage data is collected through OTLP.
+- Metrics can be exported to Amazon CloudWatch.
+- Integration with Amazon Managed Service for Prometheus.
 
-## Core Microservice
+### Routing
 
-Provides foundational data and communication layer, including:  
-- **Amazon S3** bucket for data  
-- **Amazon DynamoDB** for data catalog  
-- **AWS Lambda** to write messages into the data lake and catalog  
-- **Amazon SNS** topic as the *hub*  
-- **Amazon S3** bucket for artifacts such as Lambda code
+- Requests can be routed to Amazon Bedrock.
+- Or routed to Claude Platform on AWS.
+- Supports multi-Region and multi-account architectures.
 
-> Only allow indirect write access to the data lake through a Lambda function → ensures consistency.
+### Spend Caps
 
----
+- Daily limits.
+- Weekly limits.
+- Monthly limits.
+- Limits can be configured for organizations, teams, or individual users.
 
-## Front Door Microservice
+To me, Claude Apps Gateway plays a role similar to Amazon API Gateway, but for enterprise AI applications instead of APIs.
 
-- Provides an API Gateway for external REST interaction  
-- Authentication & authorization based on **OIDC** via **Amazon Cognito**  
-- Self-managed *deduplication* mechanism using DynamoDB instead of SNS FIFO because:  
-  1. SNS deduplication TTL is only 5 minutes  
-  2. SNS FIFO requires SQS FIFO  
-  3. Ability to proactively notify the sender that the message is a duplicate  
 
----
+## Deployment and sign-in
 
-## Staging ER7 Microservice
+The Gateway runs as a stateless container and can be deployed on:
 
-- Lambda “trigger” subscribed to the pub/sub hub, filtering messages by attribute  
-- Step Functions Express Workflow to convert ER7 → JSON  
-- Two Lambdas:  
-  1. Fix ER7 formatting (newline, carriage return)  
-  2. Parsing logic  
-- Result or error is pushed back into the pub/sub hub  
+- Amazon ECS
+- Amazon EKS
+- Amazon EC2
 
----
+Amazon RDS for PostgreSQL stores temporary authentication information and rate-limit counters.
 
-## New Features in the Solution
+To secure access, organizations can use:
 
-### 1. AWS CloudFormation Cross-Stack References
-Example *outputs* in the core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+- Internal Application Load Balancer
+- AWS Certificate Manager (ACM)
+
+Configuration is stored in a YAML file, while secrets remain in environment variables.
+
+When using Amazon Bedrock, the container can authenticate using its IAM Role instead of static credentials.
+
+Developers authenticate by running:
+
+```bash
+claude /login
+```
+
+After signing in through the organization's Single Sign-On system, they can continue using Claude Code normally. Every request is automatically authenticated, logged, and governed according to centralized policies.
+
+
+## What I learned
+
+The biggest lesson I learned from this article is that deploying AI in an enterprise environment involves much more than selecting an AI model.
+
+As AI adoption increases, organizations must also manage:
+
+- User identities
+- Security policies
+- Monitoring and observability
+- Cost management
+- Request routing
+- Governance
+
+During my AWS internship, I mainly worked with infrastructure services such as Amazon EC2, Amazon S3, AWS Backup, and AWS Storage Gateway.
+
+This article expanded my perspective by showing that production AI systems also require a centralized control plane responsible for authentication, authorization, monitoring, routing, and budgeting.
+
+The article also explains two deployment options:
+
+- **Amazon Bedrock** is suitable when organizations want data to remain entirely within the AWS security boundary.
+- **Claude Platform on AWS** provides the native Claude experience while still using AWS authentication and billing.
+
+
+## Conclusion
+
+For me, *Introducing Claude Apps Gateway for AWS* is much more than a product announcement.
+
+It demonstrates how enterprises can deploy AI applications safely while maintaining centralized identity management, policy enforcement, telemetry, routing, and cost governance.
+
+As AI becomes increasingly integrated into enterprise systems, these operational capabilities will become just as important as the AI models themselves.
+
+
+## Reference
+
+**Original article:** [Introducing Claude Apps Gateway for AWS](https://aws.amazon.com/blogs/machine-learning/introducing-claude-apps-gateway-for-aws/)

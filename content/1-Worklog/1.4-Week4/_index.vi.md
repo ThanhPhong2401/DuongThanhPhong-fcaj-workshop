@@ -28,3 +28,9 @@ pre: " <b> 1.4. </b> "
 * Nắm vững kiến thức về EC2, Lightsail và các giải pháp lưu trữ chia sẻ qua mạng (EFS/FSX).
 * Hiểu cách sử dụng AMI, Keypair, EBS và các tính năng bổ trợ (User data, Metadata) cho EC2.
 * Nắm bắt được quy trình phục hồi hệ thống sau sự cố thông qua Application Migration Service.
+
+![Image](/images/week4a.png)
+![Image](/images/week4b.png)
+![Image](/images/week4c.png)
+![Image](/images/week4d.png)
+![Image](/images/week4e.jpg)

@@ -24,3 +24,7 @@ pre: " <b> 1.7. </b> "
 * Hiểu rõ cách thức di chuyển, import/export các máy ảo từ môi trường thực tế lên nền tảng AWS.
 * Nắm vững kỹ thuật quản lý phân quyền truy cập S3 thông qua ACL.
 * Thực hiện thành công việc triển khai instance trực tiếp từ các file máy ảo đã được di chuyển.
+
+![Image](/images/week5b.png)
+![Image](/images/week5c.png)
+![Image](/images/week5d.png)

@@ -1,127 +1,137 @@
 ---
-title: "Blog 2"
+title: "Blog 2 - Claude Apps Gateway for AWS – Những điều em học được từ AWS Machine Learning Blog"
 date: 2024-01-01
 weight: 2
 chapter: false
 pre: " <b> 3.2. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+> **Bài viết gốc:** *Introducing Claude Apps Gateway for AWS*  
+> **Tác giả:** Dani Mitchell, Ayan Ray, Sofian Hamiti và Harshetha Narayan  
+> **Nguồn:** AWS Machine Learning Blog
 
-# Bắt đầu với healthcare data lakes: Sử dụng microservices
+## Lý do em chọn bài viết này
 
-Các data lake có thể giúp các bệnh viện và cơ sở y tế chuyển dữ liệu thành những thông tin chi tiết về doanh nghiệp và duy trì hoạt động kinh doanh liên tục, đồng thời bảo vệ quyền riêng tư của bệnh nhân. **Data lake** là một kho lưu trữ tập trung, được quản lý và bảo mật để lưu trữ tất cả dữ liệu của bạn, cả ở dạng ban đầu và đã xử lý để phân tích. data lake cho phép bạn chia nhỏ các kho chứa dữ liệu và kết hợp các loại phân tích khác nhau để có được thông tin chi tiết và đưa ra các quyết định kinh doanh tốt hơn.
+Trong quá trình tìm hiểu về các dịch vụ AI trên AWS, em thường xuyên theo dõi AWS Machine Learning Blog để cập nhật những công nghệ mới.
 
-Bài đăng trên blog này là một phần của loạt bài lớn hơn về việc bắt đầu cài đặt data lake dành cho lĩnh vực y tế. Trong bài đăng blog cuối cùng của tôi trong loạt bài, *“Bắt đầu với data lake dành cho lĩnh vực y tế: Đào sâu vào Amazon Cognito”*, tôi tập trung vào các chi tiết cụ thể của việc sử dụng Amazon Cognito và Attribute Based Access Control (ABAC) để xác thực và ủy quyền người dùng trong giải pháp data lake y tế. Trong blog này, tôi trình bày chi tiết cách giải pháp đã phát triển ở cấp độ cơ bản, bao gồm các quyết định thiết kế mà tôi đã đưa ra và các tính năng bổ sung được sử dụng. Bạn có thể truy cập các code samples cho giải pháp tại Git repo này để tham khảo.
+Bài viết về Claude Apps Gateway giúp em nhận ra rằng khi triển khai AI trong doanh nghiệp, việc lựa chọn mô hình AI chỉ là một phần của bài toán. Doanh nghiệp còn cần quản lý tập trung về định danh người dùng, quyền truy cập, chính sách bảo mật, giám sát, định tuyến và kiểm soát chi phí.
 
----
+Em chọn bài viết này để tổng hợp lại những kiến thức đã học và liên hệ với các dịch vụ AWS mà em được tiếp cận trong quá trình thực tập.
 
-## Hướng dẫn kiến trúc
+![Kiến trúc Claude Apps Gateway for AWS](/images/hình.jpg)
 
-Thay đổi chính kể từ lần trình bày cuối cùng của kiến trúc tổng thể là việc tách dịch vụ đơn lẻ thành một tập hợp các dịch vụ nhỏ để cải thiện khả năng bảo trì và tính linh hoạt. Việc tích hợp một lượng lớn dữ liệu y tế khác nhau thường yêu cầu các trình kết nối chuyên biệt cho từng định dạng; bằng cách giữ chúng được đóng gói riêng biệt với microservices, chúng ta có thể thêm, xóa và sửa đổi từng trình kết nối mà không ảnh hưởng đến những kết nối khác. Các microservices được kết nối rời thông qua tin nhắn publish/subscribe tập trung trong cái mà tôi gọi là “pub/sub hub”.
+*Hình 1. Kiến trúc Claude Apps Gateway for AWS. (Nguồn: AWS Machine Learning Blog)*
 
-Giải pháp này đại diện cho những gì tôi sẽ coi là một lần lặp nước rút hợp lý khác từ last post của tôi. Phạm vi vẫn được giới hạn trong việc nhập và phân tích cú pháp đơn giản của các **HL7v2 messages** được định dạng theo **Quy tắc mã hóa 7 (ER7)** thông qua giao diện REST.
+## Ấn tượng đầu tiên
 
-**Kiến trúc giải pháp bây giờ như sau:**
+Ban đầu, em nghĩ Claude Apps Gateway chỉ là một công cụ giúp kết nối Claude với AWS.
 
-> *Hình 1. Kiến trúc tổng thể; những ô màu thể hiện những dịch vụ riêng biệt.*
+Sau khi đọc bài viết, em hiểu rằng đây là một **control plane** được triển khai bởi doanh nghiệp nhằm quản lý tập trung Claude Code và Claude Desktop.
 
----
+Đối với những tổ chức có nhiều lập trình viên, việc cấp phát thông tin xác thực, cấu hình môi trường và theo dõi chi phí cho từng người dùng là một thách thức. Claude Apps Gateway giúp giải quyết vấn đề này bằng một điểm quản lý tập trung.
 
-Mặc dù thuật ngữ *microservices* có một số sự mơ hồ cố hữu, một số đặc điểm là chung:  
-- Chúng nhỏ, tự chủ, kết hợp rời rạc  
-- Có thể tái sử dụng, giao tiếp thông qua giao diện được xác định rõ  
-- Chuyên biệt để giải quyết một việc  
-- Thường được triển khai trong **event-driven architecture**
 
-Khi xác định vị trí tạo ranh giới giữa các microservices, cần cân nhắc:  
-- **Nội tại**: công nghệ được sử dụng, hiệu suất, độ tin cậy, khả năng mở rộng  
-- **Bên ngoài**: chức năng phụ thuộc, tần suất thay đổi, khả năng tái sử dụng  
-- **Con người**: quyền sở hữu nhóm, quản lý *cognitive load*
+## Claude Apps Gateway cung cấp những gì?
 
----
+Claude Apps Gateway hoạt động như một lớp trung gian giữa người dùng và dịch vụ AI. Mọi yêu cầu đều đi qua Gateway trước khi được chuyển đến Amazon Bedrock hoặc Claude Platform on AWS.
 
-## Lựa chọn công nghệ và phạm vi giao tiếp
+Các chức năng chính gồm:
 
-| Phạm vi giao tiếp                        | Các công nghệ / mô hình cần xem xét                                                        |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Trong một microservice                   | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Giữa các microservices trong một dịch vụ | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Giữa các dịch vụ                         | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+### Identity
 
----
+- Hỗ trợ Enterprise Single Sign-On (OIDC).
+- Phiên đăng nhập ngắn hạn.
+- Không lưu trữ thông tin xác thực lâu dài trên máy người dùng.
 
-## The pub/sub hub
+### Policy
 
-Việc sử dụng kiến trúc **hub-and-spoke** (hay message broker) hoạt động tốt với một số lượng nhỏ các microservices liên quan chặt chẽ.  
-- Mỗi microservice chỉ phụ thuộc vào *hub*  
-- Kết nối giữa các microservice chỉ giới hạn ở nội dung của message được xuất  
-- Giảm số lượng synchronous calls vì pub/sub là *push* không đồng bộ một chiều
+- Quản lý tập trung các mô hình được phép sử dụng.
+- Kiểm soát quyền sử dụng công cụ.
+- Thiết lập cấu hình mặc định.
+- Áp dụng chính sách theo từng nhóm người dùng.
 
-Nhược điểm: cần **phối hợp và giám sát** để tránh microservice xử lý nhầm message.
+### Telemetry
 
----
+- Thu thập dữ liệu sử dụng thông qua OTLP.
+- Có thể tích hợp với Amazon CloudWatch.
+- Hỗ trợ Amazon Managed Service for Prometheus.
 
-## Core microservice
+### Routing
 
-Cung cấp dữ liệu nền tảng và lớp truyền thông, gồm:  
-- **Amazon S3** bucket cho dữ liệu  
-- **Amazon DynamoDB** cho danh mục dữ liệu  
-- **AWS Lambda** để ghi message vào data lake và danh mục  
-- **Amazon SNS** topic làm *hub*  
-- **Amazon S3** bucket cho artifacts như mã Lambda
+- Điều hướng yêu cầu đến Amazon Bedrock.
+- Hoặc Claude Platform on AWS.
+- Hỗ trợ triển khai Multi-Region và Multi-Account.
 
-> Chỉ cho phép truy cập ghi gián tiếp vào data lake qua hàm Lambda → đảm bảo nhất quán.
+### Spend Caps
 
----
+- Giới hạn chi tiêu theo ngày.
+- Theo tuần.
+- Theo tháng.
+- Có thể áp dụng cho toàn bộ tổ chức, nhóm hoặc từng người dùng.
 
-## Front door microservice
+Theo em, Claude Apps Gateway có vai trò tương tự Amazon API Gateway nhưng dành cho các ứng dụng AI trong doanh nghiệp.
 
-- Cung cấp API Gateway để tương tác REST bên ngoài  
-- Xác thực & ủy quyền dựa trên **OIDC** thông qua **Amazon Cognito**  
-- Cơ chế *deduplication* tự quản lý bằng DynamoDB thay vì SNS FIFO vì:
-  1. SNS deduplication TTL chỉ 5 phút
-  2. SNS FIFO yêu cầu SQS FIFO
-  3. Chủ động báo cho sender biết message là bản sao
 
----
+## Triển khai và đăng nhập
 
-## Staging ER7 microservice
+Gateway được triển khai dưới dạng stateless container và có thể chạy trên:
 
-- Lambda “trigger” đăng ký với pub/sub hub, lọc message theo attribute  
-- Step Functions Express Workflow để chuyển ER7 → JSON  
-- Hai Lambda:
-  1. Sửa format ER7 (newline, carriage return)
-  2. Parsing logic  
-- Kết quả hoặc lỗi được đẩy lại vào pub/sub hub
+- Amazon ECS
+- Amazon EKS
+- Amazon EC2
 
----
+Amazon RDS for PostgreSQL được sử dụng để lưu trữ trạng thái đăng nhập tạm thời và bộ đếm giới hạn tốc độ.
 
-## Tính năng mới trong giải pháp
+Để bảo vệ hệ thống, doanh nghiệp có thể sử dụng:
 
-### 1. AWS CloudFormation cross-stack references
-Ví dụ *outputs* trong core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+- Internal Application Load Balancer
+- AWS Certificate Manager (ACM)
+
+Thông tin cấu hình được lưu trong file YAML, còn các thông tin nhạy cảm được lưu thông qua biến môi trường.
+
+Khi sử dụng Amazon Bedrock, container có thể xác thực bằng IAM Role mà không cần lưu trữ Access Key.
+
+Lập trình viên chỉ cần thực hiện:
+
+```bash
+claude /login
+```
+
+Sau khi đăng nhập bằng hệ thống Single Sign-On của doanh nghiệp, mọi yêu cầu gửi đến Claude sẽ được xác thực, ghi nhận và quản lý theo chính sách đã được cấu hình.
+
+
+## Những điều em học được
+
+Điều em học được nhiều nhất từ bài viết là việc triển khai AI trong doanh nghiệp không chỉ dừng lại ở việc lựa chọn mô hình AI phù hợp.
+
+Khi số lượng người dùng tăng lên, doanh nghiệp cần quan tâm đến:
+
+- Quản lý danh tính người dùng.
+- Chính sách bảo mật.
+- Giám sát và theo dõi hệ thống.
+- Quản lý chi phí.
+- Điều hướng yêu cầu.
+- Quản trị tập trung.
+
+Trong thời gian thực tập AWS, em chủ yếu làm việc với các dịch vụ hạ tầng như Amazon EC2, Amazon S3, AWS Backup và AWS Storage Gateway.
+
+Bài viết này giúp em có thêm góc nhìn rằng một hệ thống AI thực tế còn cần một lớp quản trị trung tâm để kiểm soát việc xác thực, phân quyền, giám sát, định tuyến và tối ưu ngân sách.
+
+Ngoài ra, bài viết cũng giúp em hiểu rõ hai lựa chọn triển khai:
+
+- **Amazon Bedrock** phù hợp khi doanh nghiệp muốn dữ liệu luôn nằm trong phạm vi bảo mật của AWS.
+- **Claude Platform on AWS** mang lại trải nghiệm Claude đầy đủ trong khi vẫn tận dụng cơ chế xác thực và thanh toán của AWS.
+
+
+## Kết luận
+
+Đối với em, *Introducing Claude Apps Gateway for AWS* không chỉ đơn thuần là một bài giới thiệu sản phẩm mới.
+
+Bài viết mang đến góc nhìn thực tế về cách doanh nghiệp triển khai AI một cách an toàn, có khả năng quản trị tập trung và kiểm soát tốt các yếu tố như định danh, chính sách, giám sát, định tuyến và chi phí.
+
+Đây là những yếu tố sẽ ngày càng quan trọng khi các ứng dụng AI được đưa vào môi trường sản xuất.
+
+
+## Tài liệu tham khảo
+
+**Link bài viết tham khảo:** [Introducing Claude Apps Gateway for AWS](https://aws.amazon.com/blogs/machine-learning/introducing-claude-apps-gateway-for-aws/)

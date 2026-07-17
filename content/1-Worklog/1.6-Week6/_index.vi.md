@@ -26,3 +26,8 @@ pre: " <b> 1.6. </b> "
 * Cấu hình thành công S3 làm hosting cho Static Website và thiết lập chính sách truy cập bảo mật.
 * Nắm vững các công cụ di chuyển dữ liệu dung lượng lớn (Snow Family) từ on-premise lên AWS.
 * Hiểu cơ bản về chiến lược sao lưu, phục hồi dữ liệu (Backup/Disaster Recovery) và các chỉ số RTO/RPO trong doanh nghiệp.
+
+![Image](/images/week6a.png)
+![Image](/images/week6b.png)
+![Image](/images/week6c.png)
+![Image](/images/week6e.jpg)

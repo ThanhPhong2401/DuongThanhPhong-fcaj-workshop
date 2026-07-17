@@ -30,3 +30,6 @@ pre: " <b> 1.2. </b> "
 * Nắm vững cơ chế điều hướng gói tin của Route Table và cách kết nối Internet qua Internet Gateway.
 * Phân biệt được tính chất Stateful của Security Group (tầng tài nguyên) và Stateless của NACL (tầng subnet).
 * Thực hành thành công Lab 03, khởi tạo hạ tầng mạng cơ bản gồm VPC, Subnet, Route Table và Internet Gateway.
+
+![Image](/images/week2.png)
+![Image](/images/TH-VPC.png)

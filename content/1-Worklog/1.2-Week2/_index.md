@@ -30,3 +30,6 @@ pre: " <b> 1.2. </b> "
 * Mastered Route Table traffic routing and Internet Gateway connectivity.
 * Differentiated between the Stateful nature of Security Groups (resource-level) and the Stateless nature of NACLs (subnet-level).
 * Successfully completed Lab 03, deploying a core network infrastructure including VPC, Subnets, Route Tables, and Internet Gateways.
+
+![Image](/images/week2.png)
+![Image](/images/TH-VPC.png)

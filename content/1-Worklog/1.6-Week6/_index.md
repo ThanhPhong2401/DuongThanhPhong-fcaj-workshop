@@ -26,3 +26,9 @@ pre: " <b> 1.6. </b> "
 * Successfully configured S3 for static website hosting and implemented secure access policies.
 * Mastered large-scale data migration tools (Snow Family) for moving on-premise data to AWS.
 * Comprehended disaster recovery, backup strategies, and RTO/RPO metrics for business continuity.
+
+![Image](/images/week6a.png)
+![Image](/images/week6b.png)
+![Image](/images/week6c.png)
+![Image](/images/week6e.jpg)
+
