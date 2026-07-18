@@ -1,126 +1,49 @@
 ---
-title: "Blog 4"
-date: 2024-01-01
+title: "Blog 4 - Query Amazon S3 Access Logs Instantly: Goodbye Log Cleanup Nightmare – Insights from AWS Storage Blog"
+date: 2024-01-03
 weight: 4
 chapter: false
 pre: " <b> 3.4. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-# Getting Started with Healthcare Data Lakes: Using Microservices
+> **Original Article:** *Query Amazon S3 access logs instantly with CloudWatch and S3 Tables*  
+> **Source:** AWS Storage Blog
 
-Data lakes can help hospitals and healthcare facilities turn data into business insights, maintain business continuity, and protect patient privacy. A **data lake** is a centralized, managed, and secure repository to store all your data, both in its raw and processed forms for analysis. Data lakes allow you to break down data silos and combine different types of analytics to gain insights and make better business decisions.
+## Why I Chose This Article
 
-This blog post is part of a larger series on getting started with setting up a healthcare data lake. In my final post of the series, *“Getting Started with Healthcare Data Lakes: Diving into Amazon Cognito”*, I focused on the specifics of using Amazon Cognito and Attribute Based Access Control (ABAC) to authenticate and authorize users in the healthcare data lake solution. In this blog, I detail how the solution evolved at a foundational level, including the design decisions I made and the additional features used. You can access the code samples for the solution in this Git repo for reference.
+During my internship and hands-on practice with various AWS services, I realized that storing data in the cloud is easy, but managing and knowing exactly *"who is doing what with my data"* is a completely different challenge. Whenever I read security documentation, enabling logs is always emphasized, yet I was not entirely clear on how to analyze those logs efficiently.
 
----
+To find a comprehensive solution, I came across the article "Query Amazon S3 access logs instantly with CloudWatch and S3 Tables" on the AWS Storage Blog. After studying it, I gained valuable insights into optimizing data monitoring—a crucial skill required in real-world production environments.
 
-## Architecture Guidance
+## 1. The Legacy Challenge: Hard-to-Read Raw Logs
 
-The main change since the last presentation of the overall architecture is the decomposition of a single service into a set of smaller services to improve maintainability and flexibility. Integrating a large volume of diverse healthcare data often requires specialized connectors for each format; by keeping them encapsulated separately as microservices, we can add, remove, and modify each connector without affecting the others. The microservices are loosely coupled via publish/subscribe messaging centered in what I call the “pub/sub hub.”
+In the past, when enabling server access logging on Amazon S3 (Access Logs), the resulting data was typically semi-structured and scattered across multiple files.
 
-This solution represents what I would consider another reasonable sprint iteration from my last post. The scope is still limited to the ingestion and basic parsing of **HL7v2 messages** formatted in **Encoding Rules 7 (ER7)** through a REST interface.
+Answering a straightforward question like *"Who downloaded this file and at what time?"* was impossible to query directly. Instead, engineering teams had to meticulously build complex data pipelines (ETL jobs) and write custom scripts to collect, parse, and clean the data before it became queryable. This process was not only time-consuming but also introduced operational overhead and maintenance costs for the ETL tools.
 
-**The solution architecture is now as follows:**
+## 2. The New AWS Solution: Direct Delivery to CloudWatch and S3 Tables
 
-> *Figure 1. Overall architecture; colored boxes represent distinct services.*
+### Automatic Structuring with CloudWatch Logs
+By streaming logs directly to CloudWatch, the system automatically parses unstructured log strings into well-structured fields. Developers can leverage **CloudWatch Logs Insights** to query logs instantly within seconds or set up proactive Alarms to detect anomalous access patterns.
 
----
+Here is the query snippet designed for the question **"Who is accessing my data?"**:
 
-While the term *microservices* has some inherent ambiguity, certain traits are common:  
-- Small, autonomous, loosely coupled  
-- Reusable, communicating through well-defined interfaces  
-- Specialized to do one thing well  
-- Often implemented in an **event-driven architecture**
+```sql
+stats count(*) as requests by requester, operation
+| sort requests desc
+```
 
-When determining where to draw boundaries between microservices, consider:  
-- **Intrinsic**: technology used, performance, reliability, scalability  
-- **Extrinsic**: dependent functionality, rate of change, reusability  
-- **Human**: team ownership, managing *cognitive load*
+With just these two simple lines of code running on CloudWatch Logs Insights, the system instantly returns a list of users/roles (requesters) performing actions (operations) on your data, sorted by request volume in descending order. This is incredibly beneficial for security auditing and access reviews, completely removing the need for tedious manual log filtering.
 
----
+### Optimized Storage with S3 Tables
+For advanced analytics and long-term retention, AWS automatically exports logs in optimized formats (such as Apache Parquet or JSON) into **S3 Tables**. This structured data is immediately ready for high-speed queries (e.g., using Amazon Athena) without requiring any manual transformation steps.
 
-## Technology Choices and Communication Scope
+## Key Takeaways
 
-| Communication scope                       | Technologies / patterns to consider                                                        |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Within a single microservice              | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Between microservices in a single service | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Between services                          | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+The biggest lesson I learned from this article is how AWS fully automates the log management lifecycle. Instead of struggling to maintain complex data pipelines just to read logs, we can now pivot our focus entirely toward querying, extracting actionable insights, and securing the infrastructure instantly.
 
----
+From my perspective, this is a highly practical and valuable approach. I wanted to share this to help anyone experiencing the same "log management nightmare." I hope this post adds value to your AWS learning journey.
 
-## The Pub/Sub Hub
+## References
 
-Using a **hub-and-spoke** architecture (or message broker) works well with a small number of tightly related microservices.  
-- Each microservice depends only on the *hub*  
-- Inter-microservice connections are limited to the contents of the published message  
-- Reduces the number of synchronous calls since pub/sub is a one-way asynchronous *push*
-
-Drawback: **coordination and monitoring** are needed to avoid microservices processing the wrong message.
-
----
-
-## Core Microservice
-
-Provides foundational data and communication layer, including:  
-- **Amazon S3** bucket for data  
-- **Amazon DynamoDB** for data catalog  
-- **AWS Lambda** to write messages into the data lake and catalog  
-- **Amazon SNS** topic as the *hub*  
-- **Amazon S3** bucket for artifacts such as Lambda code
-
-> Only allow indirect write access to the data lake through a Lambda function → ensures consistency.
-
----
-
-## Front Door Microservice
-
-- Provides an API Gateway for external REST interaction  
-- Authentication & authorization based on **OIDC** via **Amazon Cognito**  
-- Self-managed *deduplication* mechanism using DynamoDB instead of SNS FIFO because:  
-  1. SNS deduplication TTL is only 5 minutes  
-  2. SNS FIFO requires SQS FIFO  
-  3. Ability to proactively notify the sender that the message is a duplicate  
-
----
-
-## Staging ER7 Microservice
-
-- Lambda “trigger” subscribed to the pub/sub hub, filtering messages by attribute  
-- Step Functions Express Workflow to convert ER7 → JSON  
-- Two Lambdas:  
-  1. Fix ER7 formatting (newline, carriage return)  
-  2. Parsing logic  
-- Result or error is pushed back into the pub/sub hub  
-
----
-
-## New Features in the Solution
-
-### 1. AWS CloudFormation Cross-Stack References
-Example *outputs* in the core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+**Reference Link:** [Query Amazon S3 access logs instantly with CloudWatch and S3 Tables](https://aws.amazon.com/vi/blogs/storage/query-amazon-s3-access-logs-instantly-with-cloudwatch-and-s3-tables/)

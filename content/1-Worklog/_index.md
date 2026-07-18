@@ -32,4 +32,4 @@ pre: " <b> 1. </b> "
 
 **Week 11:** [Exploring Amazon Redshift and ElastiCache solutions, executing advanced DB labs, and publishing technical blogs for the community](1.11-week11/)
 
-**Week 12:** [Updating...](1.12-week12/)
+**Week 12:** [Finalizing AWS architecture, publishing blogs on S3 Access Logs and FSx for Oracle DB, and conducting the group project demo](1.12-week12/)

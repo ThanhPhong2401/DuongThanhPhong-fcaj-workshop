@@ -33,4 +33,4 @@ pre: " <b> 1. </b> "
 
 **Tuần 11:** [Nghiên cứu giải pháp Redshift, ElastiCache, thực hành Lab chuyên sâu DB và viết blog kỹ thuật chia sẻ tới cộng đồng](1.11-week11/)
 
-**Tuần 12:** [Đang cập nhật...](1.12-week12/)
+**Tuần 12:** [Hoàn thiện kiến trúc AWS, xuất bản bài viết về S3 Access Logs, FSx cho Oracle DB và chạy thử nghiệm (Demo) dự án nhóm](1.12-week12/)

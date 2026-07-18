@@ -1,127 +1,49 @@
 ---
-title: "Blog 4"
-date: 2024-01-01
+title: "Blog 4 - Truy vấn S3 Access Logs ngay lập tức: Tạm biệt nỗi ám ảnh dọn dẹp dữ liệu Log – Những điều em học được từ AWS Storage Blog"
+date: 2024-01-03
 weight: 4
 chapter: false
 pre: " <b> 3.4. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+> **Bài viết gốc:** *Query Amazon S3 access logs instantly with CloudWatch and S3 Tables*  
+> **Nguồn:** AWS Storage Blog
 
-# Bắt đầu với healthcare data lakes: Sử dụng microservices
+## Lý do em chọn bài viết này
 
-Các data lake có thể giúp các bệnh viện và cơ sở y tế chuyển dữ liệu thành những thông tin chi tiết về doanh nghiệp và duy trì hoạt động kinh doanh liên tục, đồng thời bảo vệ quyền riêng tư của bệnh nhân. **Data lake** là một kho lưu trữ tập trung, được quản lý và bảo mật để lưu trữ tất cả dữ liệu của bạn, cả ở dạng ban đầu và đã xử lý để phân tích. data lake cho phép bạn chia nhỏ các kho chứa dữ liệu và kết hợp các loại phân tích khác nhau để có được thông tin chi tiết và đưa ra các quyết định kinh doanh tốt hơn.
+Trong quá trình thực tập và mày mò các dịch vụ AWS, em nhận ra rằng việc lưu trữ dữ liệu trên Cloud rất dễ, nhưng quản lý và biết chính xác *"ai đang làm gì với dữ liệu của mình"* lại là một bài toán hoàn toàn khác. Khi đọc các tài liệu về bảo mật, mình thấy mọi người luôn nhắc đến việc phải bật Log. Tuy nhiên, đọc Log như thế nào cho hiệu quả thì mình lại chưa nắm rõ.
 
-Bài đăng trên blog này là một phần của loạt bài lớn hơn về việc bắt đầu cài đặt data lake dành cho lĩnh vực y tế. Trong bài đăng blog cuối cùng của tôi trong loạt bài, *“Bắt đầu với data lake dành cho lĩnh vực y tế: Đào sâu vào Amazon Cognito”*, tôi tập trung vào các chi tiết cụ thể của việc sử dụng Amazon Cognito và Attribute Based Access Control (ABAC) để xác thực và ủy quyền người dùng trong giải pháp data lake y tế. Trong blog này, tôi trình bày chi tiết cách giải pháp đã phát triển ở cấp độ cơ bản, bao gồm các quyết định thiết kế mà tôi đã đưa ra và các tính năng bổ sung được sử dụng. Bạn có thể truy cập các code samples cho giải pháp tại Git repo này để tham khảo.
+Và để tìm hiểu sâu hơn để giải quyết, mình đã đọc được bài viết "Query Amazon S3 access logs instantly with CloudWatch and S3 Tables" trên AWS Storage Blog. Sau khi nghiên cứu, mình thực sự vỡ lẽ ra nhiều điều về cách tối ưu hóa quá trình giám sát dữ liệu, một kỹ năng rất cần thiết khi làm việc trong môi trường thực tế.
 
----
+## 1. Bài toán rắc rối trước đây: Log thô cực kỳ khó đọc
 
-## Hướng dẫn kiến trúc
+Trước đây, khi bật tính năng lưu log truy cập trên Amazon S3 (Access Logs), dữ liệu trả về thường ở dạng bán cấu trúc (semi-structured) và nằm rải rác.
 
-Thay đổi chính kể từ lần trình bày cuối cùng của kiến trúc tổng thể là việc tách dịch vụ đơn lẻ thành một tập hợp các dịch vụ nhỏ để cải thiện khả năng bảo trì và tính linh hoạt. Việc tích hợp một lượng lớn dữ liệu y tế khác nhau thường yêu cầu các trình kết nối chuyên biệt cho từng định dạng; bằng cách giữ chúng được đóng gói riêng biệt với microservices, chúng ta có thể thêm, xóa và sửa đổi từng trình kết nối mà không ảnh hưởng đến những kết nối khác. Các microservices được kết nối rời thông qua tin nhắn publish/subscribe tập trung trong cái mà tôi gọi là “pub/sub hub”.
+Để trả lời được câu hỏi đơn giản như *"Ai đã tải file này vào lúc mấy giờ?"*, chúng ta không thể query trực tiếp ngay được. Thay vào đó, đội ngũ kỹ sư phải cặm cụi xây dựng các hệ thống pipeline (ETL jobs) phức tạp, viết script để thu thập, phân tích (parse) và làm sạch dữ liệu trước khi truy vấn. Quá trình này vừa tốn thời gian, vừa phát sinh chi phí duy trì các tool ETL này.
 
-Giải pháp này đại diện cho những gì tôi sẽ coi là một lần lặp nước rút hợp lý khác từ last post của tôi. Phạm vi vẫn được giới hạn trong việc nhập và phân tích cú pháp đơn giản của các **HL7v2 messages** được định dạng theo **Quy tắc mã hóa 7 (ER7)** thông qua giao diện REST.
+## 2. Giải pháp mới từ AWS: Đẩy thẳng Log vào CloudWatch và S3 Tables
 
-**Kiến trúc giải pháp bây giờ như sau:**
+### Tự động cấu trúc hóa với CloudWatch Logs
+Khi đẩy log vào CloudWatch, hệ thống tự động phân tích (parse) các dòng chữ lộn xộn thành các trường dữ liệu có cấu trúc. Mình có thể dùng **CloudWatch Logs Insights** để truy vấn (query) ngay lập tức chỉ trong vài giây, hoặc cài đặt cảnh báo (Alarms) chủ động nếu có truy cập bất thường.
 
-> *Hình 1. Kiến trúc tổng thể; những ô màu thể hiện những dịch vụ riêng biệt.*
+Dưới đây là đoạn mã truy vấn với câu hỏi **"Who is accessing my data?"**:
 
----
+```sql
+stats count(*) as requests by requester, operation
+| sort requests desc
+```
 
-Mặc dù thuật ngữ *microservices* có một số sự mơ hồ cố hữu, một số đặc điểm là chung:  
-- Chúng nhỏ, tự chủ, kết hợp rời rạc  
-- Có thể tái sử dụng, giao tiếp thông qua giao diện được xác định rõ  
-- Chuyên biệt để giải quyết một việc  
-- Thường được triển khai trong **event-driven architecture**
+Chỉ với hai dòng lệnh đơn giản này chạy trên CloudWatch Logs Insights, hệ thống sẽ ngay lập tức trả về danh sách các user/role (requester) đang thao tác (operation) trên dữ liệu, sắp xếp theo số lượng request giảm dần. Điều này cực kỳ hữu ích cho việc audit bảo mật (access reviews) mà không cần phải tốn công viết script lọc log thủ công như trước.
 
-Khi xác định vị trí tạo ranh giới giữa các microservices, cần cân nhắc:  
-- **Nội tại**: công nghệ được sử dụng, hiệu suất, độ tin cậy, khả năng mở rộng  
-- **Bên ngoài**: chức năng phụ thuộc, tần suất thay đổi, khả năng tái sử dụng  
-- **Con người**: quyền sở hữu nhóm, quản lý *cognitive load*
+### Lưu trữ tối ưu với S3 Tables
+Nếu muốn lưu trữ để phân tích nâng cao, AWS tự động xuất log dưới định dạng tối ưu (như Apache Parquet hoặc JSON) vào **S3 Tables**. Dữ liệu này đã sẵn sàng để truy vấn tốc độ cao (như dùng với Amazon Athena) mà không cần qua bất kỳ bước chuyển đổi nào.
 
----
+## Những điều em học được
 
-## Lựa chọn công nghệ và phạm vi giao tiếp
+Bài học lớn nhất của mình sau bài viết này là cách AWS giúp tự động hóa hoàn toàn quy trình xử lý Log. Thay vì phải “còng lưng” bảo trì các đường ống dữ liệu (data pipeline) phức tạp chỉ để đọc Log, giờ đây chúng ta có thể tập trung vào việc truy vấn, lấy insights và bảo mật hệ thống ngay lập tức.
 
-| Phạm vi giao tiếp                        | Các công nghệ / mô hình cần xem xét                                                        |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Trong một microservice                   | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Giữa các microservices trong một dịch vụ | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Giữa các dịch vụ                         | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+Đối với mình, đây là một hướng giải quyết rất thực tế và đáng giá. Mình muốn chia sẻ cho mọi người cùng biết nếu các bạn vướng cùng “nỗi ám ảnh” giống như mình. Hy vọng bài viết này giúp ích được phần nào cho lộ trình học AWS của các bạn.
 
----
+## Tài liệu tham khảo
 
-## The pub/sub hub
-
-Việc sử dụng kiến trúc **hub-and-spoke** (hay message broker) hoạt động tốt với một số lượng nhỏ các microservices liên quan chặt chẽ.  
-- Mỗi microservice chỉ phụ thuộc vào *hub*  
-- Kết nối giữa các microservice chỉ giới hạn ở nội dung của message được xuất  
-- Giảm số lượng synchronous calls vì pub/sub là *push* không đồng bộ một chiều
-
-Nhược điểm: cần **phối hợp và giám sát** để tránh microservice xử lý nhầm message.
-
----
-
-## Core microservice
-
-Cung cấp dữ liệu nền tảng và lớp truyền thông, gồm:  
-- **Amazon S3** bucket cho dữ liệu  
-- **Amazon DynamoDB** cho danh mục dữ liệu  
-- **AWS Lambda** để ghi message vào data lake và danh mục  
-- **Amazon SNS** topic làm *hub*  
-- **Amazon S3** bucket cho artifacts như mã Lambda
-
-> Chỉ cho phép truy cập ghi gián tiếp vào data lake qua hàm Lambda → đảm bảo nhất quán.
-
----
-
-## Front door microservice
-
-- Cung cấp API Gateway để tương tác REST bên ngoài  
-- Xác thực & ủy quyền dựa trên **OIDC** thông qua **Amazon Cognito**  
-- Cơ chế *deduplication* tự quản lý bằng DynamoDB thay vì SNS FIFO vì:
-  1. SNS deduplication TTL chỉ 5 phút
-  2. SNS FIFO yêu cầu SQS FIFO
-  3. Chủ động báo cho sender biết message là bản sao
-
----
-
-## Staging ER7 microservice
-
-- Lambda “trigger” đăng ký với pub/sub hub, lọc message theo attribute  
-- Step Functions Express Workflow để chuyển ER7 → JSON  
-- Hai Lambda:
-  1. Sửa format ER7 (newline, carriage return)
-  2. Parsing logic  
-- Kết quả hoặc lỗi được đẩy lại vào pub/sub hub
-
----
-
-## Tính năng mới trong giải pháp
-
-### 1. AWS CloudFormation cross-stack references
-Ví dụ *outputs* trong core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+**Link bài viết tham khảo:** [Query Amazon S3 access logs instantly with CloudWatch and S3 Tables](https://aws.amazon.com/vi/blogs/storage/query-amazon-s3-access-logs-instantly-with-cloudwatch-and-s3-tables/)
