@@ -16,7 +16,7 @@ chapter: false
 
 &emsp; **Major:** Information Technology (Software Engineering)
 
-&emsp; **Class:** AWS042026
+&emsp; **Class:** 22DTHE2
 
 &emsp; **Internship Company:** Amazon Web Services Viet Nam Company Limited
 
@@ -24,7 +24,7 @@ chapter: false
 
 &emsp; **Internship Duration:** From 17/04/2026 to 17/07/2026
 
-![Your profile picture](images/anhAvartar.png)
+![Your profile picture](/images/anhAvartar.png)
 
 ### Report Content
 
@@ -35,3 +35,4 @@ chapter: false
 5.  [Workshop](5-Workshop/)
 6.  [Self-evaluation](6-Self-evaluation/)
 7.  [Sharing and Feedback](7-Feedback/)
+

@@ -25,5 +25,6 @@ pre: " <b> 1.9. </b> "
 * Grasped foundational Database principles (Index, Partition, Transaction, etc.) as a base for RDS and Aurora.
 * Proficient in the deployment, configuration, and management processes of relational databases on AWS.
 
-![Image](/images/week5b.png)
-
+![Image](/images/week9a.jpg)
+![Image](/images/week9b.jpg)
+![Image](/images/week9c.jpg)

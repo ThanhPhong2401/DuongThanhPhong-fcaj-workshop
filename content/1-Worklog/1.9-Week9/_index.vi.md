@@ -25,4 +25,6 @@ pre: " <b> 1.9. </b> "
 * Nắm bắt các nguyên lý căn bản của Database (Index, Partition, Transaction,...) làm nền tảng cho RDS và Aurora.
 * Thành thạo quy trình triển khai, cấu hình và quản trị cơ sở dữ liệu quan hệ trên AWS.
 
-![Image](/images/week5b.png)
+![Image](/images/week9a.jpg)
+![Image](/images/week9b.jpg)
+![Image](/images/week9c.jpg)

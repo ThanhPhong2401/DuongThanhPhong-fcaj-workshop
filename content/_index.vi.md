@@ -16,7 +16,7 @@ chapter: false
 
 &emsp; **Chuyên Ngành:** Công nghệ Thông tin (Kỹ thuật Phần mềm)
 
-&emsp; **Lớp:** AWS042026
+&emsp; **Lớp:** 22DTHE2
 
 &emsp; **Công Ty Thực Tập:** Công ty TNHH Amazon Web Services Việt Nam
 
@@ -35,3 +35,4 @@ chapter: false
 5.  [Hội Thảo](5-Workshop/)
 6.  [Tự Đánh Giá](6-Self-evaluation/)
 7.  [Chia Sẻ và Phản Hồi](7-Feedback/)
+
