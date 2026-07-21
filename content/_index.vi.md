@@ -22,7 +22,7 @@ chapter: false
 
 &emsp; **Vị Trí Thực Tập:** Workforce Bootcamp 2026 - First Cloud AI Journey
 
-&emsp; **Thời Gian Thực Tập:** Từ 17/04/2026 đến 17/07/2026
+&emsp; **Thời Gian Thực Tập:** Từ 17/04/2026 đến 30/07/2026
 
 ![Ảnh đại diện của bạn](/images/anhAvartar.png)
 
