@@ -30,4 +30,3 @@ pre: " <b> 1.11. </b> "
 * Shared knowledge on Route 53 and CloudFormation with the community and improved technical writing quality through mentor guidance.
 * Clearly defined and synchronized the workflow of the system architecture for the team project.
 
-![Image](/images/week5b.png)

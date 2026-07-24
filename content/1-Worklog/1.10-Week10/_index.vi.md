@@ -28,4 +28,3 @@ pre: " <b> 1.10. </b> "
 * Áp dụng thành công các kiến thức về Database vào bài thực hành lab.
 * Hoàn thiện sơ đồ kiến trúc tổng thể cho dự án nhóm, tối ưu hóa các thành phần theo tiêu chuẩn AWS.
 
-![Image](/images/week5b.png)

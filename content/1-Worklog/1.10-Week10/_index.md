@@ -28,4 +28,3 @@ pre: " <b> 1.10. </b> "
 * Successfully applied Database knowledge to hands-on lab exercises.
 * Finalized the overall architecture diagram for the team project, optimizing components according to AWS best practices.
 
-![Image](/images/week5b.png)

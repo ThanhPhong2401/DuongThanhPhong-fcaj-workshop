@@ -30,4 +30,3 @@ pre: " <b> 1.11. </b> "
 * Chia sẻ kiến thức về Route 53 và CloudFormation tới cộng đồng, đồng thời học hỏi được tư duy viết blog chất lượng thông qua sự góp ý của mentor.
 * Định hình rõ ràng và thống nhất được luồng hoạt động của kiến trúc hệ thống cho dự án nhóm sau quá trình bàn luận.
 
-![Image](/images/week5b.png)
